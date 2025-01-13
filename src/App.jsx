@@ -48,6 +48,13 @@ function App() {
 
     }
 
+    function handleEditData(index, updateInput) {
+      let newTodoList = [...todos];
+      newTodoList[index].input = updateInput;
+      setTodos(newTodoList)
+      handleSaveData(newTodoList)
+    }
+
   useEffect(() => {
     if(!localStorage || !localStorage.getItem('todo-app')) 
       { return }
@@ -59,7 +66,7 @@ function App() {
     <>
       <Header todos={todos}/>
       <Tabs  selectedTab={selectedTab} setSelecdtedTab={setSelecdtedTab} todos={todos}/>
-      <TodoList handleCompleteTodo = {handleCompleteTodo}
+      <TodoList handleEditData={handleEditData} handleCompleteTodo = {handleCompleteTodo}
        handleDeleteTodo={handleDeleteTodo} 
        selectedTab={selectedTab} todos={todos}/>
       <TodoInput handleAddTodo= {handleAddTodo} />
